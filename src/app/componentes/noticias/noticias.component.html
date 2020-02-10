@@ -1,0 +1,27 @@
+<div class="row">
+    <h4 class="m-2"><a href="#" class="fa fa-arrow-left" (click)="volver($event)"></a></h4>
+    <h1 class="col-10 text-center">Noticias de {{area.nombre}}</h1>
+</div>
+<ng-container *ngIf="noticias; else elseTemplate">
+    <div class="row">
+        <div class="card-columns">
+            <div class="card mb-3" *ngFor="let n of noticias">
+                <img class="card-img-top" [src]="n.urlToImage" [alt]="n.title">
+                <div class="card-body">
+                    <h5 class="card-title">{{n.title}}</h5>
+                    <p class="card-text">{{n.description}}</p>
+                    <a [href]="n.urlToImage">Enlace a la noticia original</a>
+                    <p class="card-text"><small class="text-muted">{{n.publishedAt | date}}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="m-2"><a href="#" class="fa fa-arrow-left" (click)="volver($event)"></a></h4>
+</ng-container>
+<ng-template #elseTemplate>
+    <div class="row text-center" style="height:400px;">
+        <div class="fa-3x align-self-center col-12">
+            <i class="fas fa-spinner fa-spin"></i>
+        </div>
+    </div>
+</ng-template>

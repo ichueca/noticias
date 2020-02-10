@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NoticiasService } from './servicios/noticias.service';
+import { Noticia } from './modelo/noticia';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'noticias';
+  
 }

@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-1">
+    <h4 class="m-2"><a href="#" class="fa fa-arrow-left" (click)="volver($event)"></a></h4>
+</div>
+    <div class="col-11 text-center">
+        <h1>{{area.nombre}}</h1>
+    </div>
+</div>
+<div class="row">
+    <ng-container *ngIf="terminos; else elseTemplate">
+        <h5><span *ngFor="let t of terminos" class="badge badge-primary m-2">{{ t.busqueda }} 
+            <a href="#" (click)="eliminar($event,t.id)" class="m-2 btn-primary fas fa-trash-alt"></a></span> </h5>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <div class="alert alert-info">No hay términos de búsqueda. Cree alguno para ver las noticias</div>
+    </ng-template>
+</div>
+<div class="row">
+    <div class="col-12">
+        <form #nuevoForm="ngForm" (ngSubmit)="crear()">
+            <div class="form-group">
+                <label for="nombre">Término de Búsqueda</label>
+                <input type="text" #busqueda="ngModel" class="form-control" id="busqueda" [(ngModel)]="termino.busqueda"
+                    placeholder="Introduzca el término de búsqueda" name="busqueda" required>
+            </div>
+            <div class="form-group">
+                <label for="numResultados">Nº Resultados Deseados</label>
+                <input type="number" class="form-control" id="numResultados" name="numResultados"
+                    [(ngModel)]="termino.numResultados">
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!nuevoForm.valid">Añadir Término de Búsqueda</button>
+        </form>
+    </div>
+</div>
+<div class="row mt-3">
+    <button (click)="verNoticias()" [disabled]="terminos.length==0" class="col-12 btn btn-primary">Ver Noticias</button>
+</div>

@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6 text-center">
+        <h1>Identifíquese</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form #loginForm="ngForm" (ngSubmit)="entrar(nombre)">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" #nombre="ngModel" class="form-control" id="nombre" [(ngModel)]="usuario.nombre"
+                    placeholder="Introduzca su nombre" name="nombre" required>
+                <div [hidden]="!nombre.errors?.required || !nombre.touched" class="mt-2 alert alert-danger">El nombre es obligatorio</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" #password="ngModel" class="form-control" id="password" placeholder="Password" 
+                    name="password" [(ngModel)]="usuario.password" required>
+                <div [hidden]="!password.errors?.required || !password.touched" class="mt-2 alert alert-danger">La contraseña es obligatoria</div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Entrar</button>
+        </form>
+        <div *ngIf="error" class="mt-2 alert alert-danger">{{error}}</div>
+    </div>
+</div>
